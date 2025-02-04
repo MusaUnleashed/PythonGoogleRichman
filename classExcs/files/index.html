@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Functions Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #color-box {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Random Functions Demo</h1>
+
+    <button onclick="showRandomInt()">Random Integer (1-100)</button>
+    <p id="random-int">Click the button</p>
+
+    <button onclick="changeColor()">Random Hex Color</button>
+    <div id="color-box"></div>
+
+    <button onclick="showRandomString()">Random String (10 chars)</button>
+    <p id="random-string">Click the button</p>
+
+    <button onclick="showRandomItem()">Random Item</button>
+    <p id="random-item">Click the button</p>
+
+    <script>
+        // Generate a random integer between min and max (inclusive)
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Generate a random hex color
+        function getRandomHexColor() {
+            return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+        }
+
+        // Generate a random string of given length
+        function getRandomString(length) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            return Array.from({ length }, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
+        }
+
+        // Pick a random item from an array
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Event handlers
+        function showRandomInt() {
+            document.getElementById("random-int").textContent = getRandomInt(1, 100);
+        }
+
+        function changeColor() {
+            const color = getRandomHexColor();
+            document.getElementById("color-box").style.backgroundColor = color;
+        }
+
+        function showRandomString() {
+            document.getElementById("random-string").textContent = getRandomString(10);
+        }
+
+        function showRandomItem() {
+            const items = ["Apple", "Banana", "Cherry", "Date", "Grape"];
+            document.getElementById("random-item").textContent = getRandomItem(items);
+        }
+    </script>
+
+</body>
+</html>
